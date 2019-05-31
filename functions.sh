@@ -219,6 +219,7 @@ generate_type2_appimage()
     mv appimagetool "$appimagetool_tempdir"
     pushd "$appimagetool_tempdir" &>/dev/null
     ls -al
+    sed -i 's|AI\x02|\x00\x00\x00|' appimagetool
     ./appimagetool --appimage-extract
     rm appimagetool
     appimagetool=$(readlink -f squashfs-root/AppRun)
